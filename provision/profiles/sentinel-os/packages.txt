@@ -10,7 +10,7 @@ netcat-openbsd
 masscan
 
 # Forensics
-volatility3
+# volatility3 — installed via pip
 binwalk
 foremost
 testdisk
@@ -27,7 +27,7 @@ clamav
 yara
 
 # Penetration testing (controlled)
-metasploit-framework
+# metasploit-framework — pre-installed on Kali
 
 # Packet capture
 libpcap-dev
