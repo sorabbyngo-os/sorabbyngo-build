@@ -1,0 +1,47 @@
+# ============================================================
+# Sorabbyngo Novela OS — Kernel defconfig
+# Medical and clinical equipment surface
+# PREEMPT_RT real-time patches required
+# ============================================================
+
+BR2_x86_64=y
+BR2_x86_corei7=y
+BR2_TOOLCHAIN_BUILDROOT_GLIBC=y
+BR2_TOOLCHAIN_BUILDROOT_CXX=y
+
+# Real-time kernel
+BR2_LINUX_KERNEL=y
+BR2_LINUX_KERNEL_USE_CUSTOM_CONFIG=y
+BR2_LINUX_KERNEL_CUSTOM_CONFIG_FILE="$(TOPDIR)/../sorabbyngo-patches/sorabbyngo_rt.config"
+
+# PREEMPT_RT fragment
+BR2_LINUX_KERNEL_CONFIG_FRAGMENT_FILES="hardening/kernel/preempt_rt.fragment"
+
+BR2_INIT_SYSTEMD=y
+BR2_PACKAGE_BASH=y
+BR2_PACKAGE_PYTHON3=y
+BR2_PACKAGE_OPENSSH=y
+BR2_PACKAGE_OPENSSL=y
+
+# Medical device interfaces
+BR2_PACKAGE_LIBUSB=y
+BR2_PACKAGE_LIBSERIALPORT=y
+
+# PostgreSQL for FHIR
+BR2_PACKAGE_POSTGRESQL=y
+
+BR2_ENABLE_LOCALE=y
+BR2_GENERATE_LOCALE="en_US.UTF-8 sw_KE.UTF-8"
+BR2_TARGET_GENERIC_HOSTNAME="sorabbyngo-novela"
+BR2_TARGET_GENERIC_ISSUE="Sorabbyngo Novela OS — Medical Intelligence"
+
+BR2_TARGET_ROOTFS_EXT2=y
+BR2_TARGET_ROOTFS_EXT2_4=y
+BR2_TARGET_ROOTFS_EXT2_SIZE="8G"
+BR2_TARGET_ROOTFS_ISO9660=y
+BR2_TARGET_ROOTFS_ISO9660_HYBRID=y
+BR2_TARGET_GRUB2=y
+BR2_TARGET_GRUB2_X86_64_EFI=y
+
+BR2_ROOTFS_OVERLAY="board/sorabbyngo/overlay board/novela/overlay"
+BR2_ROOTFS_POST_BUILD_SCRIPT="board/sorabbyngo/post-build.sh board/novela/post-build.sh"

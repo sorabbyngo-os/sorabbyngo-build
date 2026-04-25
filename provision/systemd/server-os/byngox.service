@@ -1,0 +1,34 @@
+[Unit]
+Description=Byngox — 8-agent swarm AI reasoning engine
+Documentation=https://github.com/sorabbyngo-Labs/byngox
+After=network.target sorabbyngo-nodeid.service nats.service
+Requires=nats.service sorabbyngo-nodeid.service
+
+[Service]
+Type=simple
+User=sorabbyngo
+Group=sorabbyngo
+WorkingDirectory=/opt/sorabbyngo/byngox
+ExecStart=/usr/bin/python3 /opt/sorabbyngo/byngox/main.py
+Restart=on-failure
+RestartSec=15s
+StandardOutput=journal
+StandardError=journal
+SyslogIdentifier=byngox
+EnvironmentFile=/etc/sorabbyngo/environment
+
+# Allow GPU access for AI inference
+DeviceAllow=/dev/nvidia* rw
+DeviceAllow=/dev/dri rw
+SupplementaryGroups=video render
+
+NoNewPrivileges=yes
+ProtectSystem=strict
+ProtectHome=yes
+ReadWritePaths=/var/log/sorabbyngo /var/lib/byngox
+PrivateTmp=yes
+SystemCallFilter=@system-service @network-io
+SystemCallErrorNumber=EPERM
+
+[Install]
+WantedBy=multi-user.target

@@ -1,0 +1,23 @@
+[Unit]
+Description=Sorabbyngo NodeID Service
+Documentation=https://github.com/sorabbyngo-Labs/sorabbyngo-os
+After=local-fs.target
+Before=byngonet.service network.target
+
+[Service]
+Type=oneshot
+RemainAfterExit=yes
+ExecStart=/opt/sorabbyngo/scripts/nodeid-init.sh
+StandardOutput=journal
+StandardError=journal
+SyslogIdentifier=sorabbyngo-nodeid
+
+# Security hardening for the service itself
+NoNewPrivileges=yes
+ProtectSystem=strict
+ProtectHome=yes
+ReadWritePaths=/var/lib/sorabbyngo
+PrivateTmp=yes
+
+[Install]
+WantedBy=multi-user.target

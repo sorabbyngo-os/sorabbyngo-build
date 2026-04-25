@@ -1,0 +1,47 @@
+# ============================================================
+# Sorabbyngo Server OS — defconfig
+# High-throughput infrastructure surface
+# ============================================================
+
+BR2_x86_64=y
+BR2_x86_corei7=y
+BR2_TOOLCHAIN_BUILDROOT_GLIBC=y
+BR2_TOOLCHAIN_BUILDROOT_CXX=y
+
+BR2_LINUX_KERNEL=y
+BR2_LINUX_KERNEL_USE_CUSTOM_CONFIG=y
+BR2_LINUX_KERNEL_CUSTOM_CONFIG_FILE="$(TOPDIR)/../sorabbyngo-patches/sorabbyngo_server.config"
+
+BR2_INIT_SYSTEMD=y
+BR2_PACKAGE_SYSTEMD_JOURNAL_REMOTE=y
+
+BR2_PACKAGE_BASH=y
+BR2_PACKAGE_PYTHON3=y
+BR2_PACKAGE_OPENSSH=y
+BR2_PACKAGE_OPENSSL=y
+
+# High-throughput networking
+BR2_PACKAGE_IPROUTE2=y
+BR2_PACKAGE_NFTABLES=y
+BR2_PACKAGE_IPERF3=y
+
+# Database
+BR2_PACKAGE_POSTGRESQL=y
+BR2_PACKAGE_REDIS=y
+
+# Container runtime
+BR2_PACKAGE_DOCKER_ENGINE=y
+
+BR2_ENABLE_LOCALE=y
+BR2_GENERATE_LOCALE="en_US.UTF-8 sw_KE.UTF-8"
+BR2_TARGET_GENERIC_HOSTNAME="sorabbyngo-server"
+BR2_TARGET_GENERIC_ISSUE="Sorabbyngo Server OS — Infrastructure"
+
+BR2_TARGET_ROOTFS_EXT2=y
+BR2_TARGET_ROOTFS_EXT2_4=y
+BR2_TARGET_ROOTFS_EXT2_SIZE="20G"
+BR2_TARGET_GRUB2=y
+BR2_TARGET_GRUB2_X86_64_EFI=y
+
+BR2_ROOTFS_OVERLAY="board/sorabbyngo/overlay board/server/overlay"
+BR2_ROOTFS_POST_BUILD_SCRIPT="board/sorabbyngo/post-build.sh board/server/post-build.sh"

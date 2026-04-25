@@ -1,0 +1,35 @@
+# Sorabbyngo Edge OS Package Profile
+# IoT, drones, vehicles, sensors
+
+# Minimal footprint — only essentials
+python3-minimal
+python3-pip
+
+# Hardware interfaces
+python3-serial
+python3-spidev
+python3-smbus2
+
+# CAN bus (vehicles)
+can-utils
+python3-can
+
+# MAVLink (drones)
+python3-pymavlink
+
+# Real-time scheduling
+linux-tools-common
+
+# Compressed AI inference
+# TinyLLM / llama.cpp built from source
+
+# Watchdog
+watchdog
+
+# Minimal networking
+iproute2
+wireless-tools
+wpasupplicant
+
+# Byngonet mesh
+# Built from sorabbyngo-Labs/byngonet

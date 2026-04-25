@@ -1,0 +1,17 @@
+[Unit]
+Description=Sorabbyngo Kernel Hardening
+Documentation=https://github.com/sorabbyngo-Labs/sorabbyngo-os
+DefaultDependencies=no
+Before=network.target sysinit.target
+After=local-fs.target
+
+[Service]
+Type=oneshot
+RemainAfterExit=yes
+ExecStart=/opt/sorabbyngo/hardening/kernel/apply-hardening.sh
+StandardOutput=journal
+StandardError=journal
+SyslogIdentifier=sorabbyngo-hardening
+
+[Install]
+WantedBy=sysinit.target

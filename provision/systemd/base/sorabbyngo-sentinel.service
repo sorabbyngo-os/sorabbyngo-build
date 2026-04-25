@@ -1,0 +1,40 @@
+[Unit]
+Description=Sorabbyngo Sentinel Daemon
+Documentation=https://github.com/sorabbyngo-Labs/sorabbyngo-os
+After=network.target sorabbyngo-nodeid.service nats.service
+Requires=sorabbyngo-nodeid.service
+Wants=nats.service
+
+[Service]
+Type=simple
+User=sorabbyngo
+Group=sorabbyngo
+WorkingDirectory=/opt/sorabbyngo
+ExecStart=/usr/bin/python3 /opt/sorabbyngo/sentinel/sentinel_daemon.py \
+    --nats nats://localhost:4222
+Restart=on-failure
+RestartSec=5s
+StandardOutput=journal
+StandardError=journal
+SyslogIdentifier=sorabbyngo-sentinel
+EnvironmentFile=/etc/sorabbyngo/environment
+
+# Security hardening
+NoNewPrivileges=yes
+ProtectSystem=strict
+ProtectHome=yes
+ReadWritePaths=/var/log/sorabbyngo /var/lib/sorabbyngo
+PrivateTmp=yes
+PrivateDevices=yes
+ProtectKernelTunables=yes
+ProtectKernelModules=yes
+ProtectControlGroups=yes
+RestrictNamespaces=yes
+LockPersonality=yes
+MemoryDenyWriteExecute=yes
+RestrictRealtime=yes
+SystemCallFilter=@system-service
+SystemCallErrorNumber=EPERM
+
+[Install]
+WantedBy=multi-user.target

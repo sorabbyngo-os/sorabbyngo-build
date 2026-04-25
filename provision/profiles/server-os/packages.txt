@@ -1,0 +1,45 @@
+# Sorabbyngo Server OS Package Profile
+# Infrastructure — Byngonet nodes, vLLM, NATS clusters
+
+# High performance networking
+linux-tools-common
+ethtool
+iperf3
+
+# NATS clustering
+nats-server
+
+# Database
+postgresql
+redis-server
+
+# vLLM / AI inference
+python3-torch
+python3-transformers
+python3-accelerate
+
+# Graph database (Neo4j deps)
+default-jre-headless
+
+# Monitoring
+prometheus-node-exporter
+grafana
+
+# Container runtime
+docker.io
+docker-compose
+
+# ZFS for data integrity
+zfsutils-linux
+
+# High-availability
+keepalived
+haproxy
+
+# Message queue
+python3-nats-py
+
+# API server
+python3-fastapi
+python3-uvicorn
+python3-gunicorn

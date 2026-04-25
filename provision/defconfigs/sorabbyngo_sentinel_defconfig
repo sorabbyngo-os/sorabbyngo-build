@@ -1,0 +1,63 @@
+# ============================================================
+# Sorabbyngo Sentinel OS — Kernel defconfig
+# Hardened cybersecurity operations surface
+# Based on sorabbyngo_x86_64_defconfig
+# ============================================================
+
+# Architecture
+BR2_x86_64=y
+BR2_x86_corei7=y
+
+# Toolchain
+BR2_TOOLCHAIN_BUILDROOT_GLIBC=y
+BR2_TOOLCHAIN_BUILDROOT_CXX=y
+
+# Hardened kernel config
+BR2_LINUX_KERNEL=y
+BR2_LINUX_KERNEL_USE_CUSTOM_CONFIG=y
+BR2_LINUX_KERNEL_CUSTOM_CONFIG_FILE="$(TOPDIR)/../sorabbyngo-patches/sorabbyngo_sentinel.config"
+
+# Hardening options
+BR2_LINUX_KERNEL_CONFIG_FRAGMENT_FILES="hardening/kernel/sentinel.fragment"
+
+# Init
+BR2_INIT_SYSTEMD=y
+BR2_PACKAGE_SYSTEMD_JOURNAL_REMOTE=y
+
+# Core packages
+BR2_PACKAGE_BASH=y
+BR2_PACKAGE_PYTHON3=y
+BR2_PACKAGE_OPENSSH=y
+BR2_PACKAGE_OPENSSL=y
+
+# Security tools
+BR2_PACKAGE_NMAP=y
+BR2_PACKAGE_TCPDUMP=y
+BR2_PACKAGE_LIBPCAP=y
+
+# Network
+BR2_PACKAGE_IPROUTE2=y
+BR2_PACKAGE_NFTABLES=y
+
+# Locales
+BR2_ENABLE_LOCALE=y
+BR2_GENERATE_LOCALE="en_US.UTF-8 sw_KE.UTF-8"
+
+# Target hostname
+BR2_TARGET_GENERIC_HOSTNAME="sorabbyngo-sentinel"
+BR2_TARGET_GENERIC_ISSUE="Sorabbyngo Sentinel OS — Cybersecurity Operations"
+
+# Filesystem
+BR2_TARGET_ROOTFS_EXT2=y
+BR2_TARGET_ROOTFS_EXT2_4=y
+BR2_TARGET_ROOTFS_EXT2_SIZE="4G"
+BR2_TARGET_ROOTFS_ISO9660=y
+BR2_TARGET_ROOTFS_ISO9660_HYBRID=y
+
+# Boot
+BR2_TARGET_GRUB2=y
+BR2_TARGET_GRUB2_X86_64_EFI=y
+
+# Overlay
+BR2_ROOTFS_OVERLAY="board/sorabbyngo/overlay board/sentinel/overlay"
+BR2_ROOTFS_POST_BUILD_SCRIPT="board/sorabbyngo/post-build.sh board/sentinel/post-build.sh"

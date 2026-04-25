@@ -1,0 +1,29 @@
+[Unit]
+Description=Byngo Agent — Autonomous security scanning
+Documentation=https://github.com/sorabbyngo-Labs/malware-lab
+After=sorabbyngo-sentinel.service sorabbyngo-cyberwall.service
+Wants=sorabbyngo-cyberwall.service
+
+[Service]
+Type=simple
+User=sorabbyngo
+Group=sorabbyngo
+ExecStart=/usr/local/bin/byngo-agent watch /opt/sorabbyngo --respond
+Restart=on-failure
+RestartSec=30s
+StandardOutput=journal
+StandardError=journal
+SyslogIdentifier=byngo-agent
+EnvironmentFile=/etc/sorabbyngo/environment
+
+NoNewPrivileges=yes
+ProtectSystem=strict
+ProtectHome=yes
+ReadWritePaths=/var/log/sorabbyngo /var/lib/sorabbyngo/quarantine
+PrivateTmp=yes
+PrivateNetwork=yes
+SystemCallFilter=@system-service @file-system
+SystemCallErrorNumber=EPERM
+
+[Install]
+WantedBy=multi-user.target

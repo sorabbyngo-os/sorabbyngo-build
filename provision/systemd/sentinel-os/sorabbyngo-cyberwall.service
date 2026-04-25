@@ -1,0 +1,29 @@
+[Unit]
+Description=Sorabbyngo Cyberwall — AI-native security layer
+Documentation=https://github.com/sorabbyngo-Labs/sorabbyngo-cyberwall
+After=network.target sorabbyngo-nodeid.service sorabbyngo-sentinel.service
+Requires=sorabbyngo-sentinel.service
+
+[Service]
+Type=simple
+User=sorabbyngo
+Group=sorabbyngo
+WorkingDirectory=/opt/sorabbyngo/cyberwall
+ExecStart=/usr/bin/python3 /opt/sorabbyngo/cyberwall/main.py
+Restart=on-failure
+RestartSec=10s
+StandardOutput=journal
+StandardError=journal
+SyslogIdentifier=sorabbyngo-cyberwall
+EnvironmentFile=/etc/sorabbyngo/environment
+
+NoNewPrivileges=yes
+ProtectSystem=strict
+ProtectHome=yes
+ReadWritePaths=/var/log/sorabbyngo
+PrivateTmp=yes
+SystemCallFilter=@system-service @network-io
+SystemCallErrorNumber=EPERM
+
+[Install]
+WantedBy=multi-user.target

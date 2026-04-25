@@ -1,0 +1,50 @@
+# Sorabbyngo Sentinel OS Package Profile
+# Cybersecurity operations
+
+# Network analysis
+tcpdump
+wireshark-common
+tshark
+nmap
+netcat-openbsd
+masscan
+
+# Forensics
+volatility3
+binwalk
+foremost
+testdisk
+sleuthkit
+
+# Reverse engineering
+radare2
+gdb
+strace
+ltrace
+
+# Malware analysis
+clamav
+yara
+
+# Penetration testing (controlled)
+metasploit-framework
+
+# Packet capture
+libpcap-dev
+python3-scapy
+
+# eBPF tooling
+bpftrace
+bpfcc-tools
+linux-headers-generic
+
+# Sorabbyngo security tools built from source
+# (byngo-static, byngo-detect, byngo-net, byngo-agent)
+
+# Threat intelligence
+python3-requests
+python3-dnspython
+
+# Reporting
+python3-jinja2
+python3-markdown

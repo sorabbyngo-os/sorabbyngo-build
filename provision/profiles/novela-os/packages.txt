@@ -1,0 +1,36 @@
+# Sorabbyngo Novela OS Package Profile
+# Medical and clinical equipment
+
+# Django + FHIR backend
+python3-django
+python3-djangorestframework
+python3-psycopg2
+
+# Database
+postgresql
+postgresql-client
+
+# Vector DB for clinical AI
+python3-numpy
+
+# Medical device interfaces
+python3-serial
+python3-usb
+
+# Real-time requirements
+linux-tools-common
+
+# AI runtime (Tier 1 medical models)
+# Ollama installed separately via setup_models.sh
+
+# Patient monitor integration
+python3-websockets
+python3-aiohttp
+
+# FHIR compliance libs
+python3-requests
+python3-jwt
+
+# Counterfeit drug detection
+python3-pillow
+python3-opencv

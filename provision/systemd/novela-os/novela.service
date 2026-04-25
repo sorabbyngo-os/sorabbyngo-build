@@ -1,0 +1,36 @@
+[Unit]
+Description=Novela — Africa-first AI health platform
+Documentation=https://github.com/sorabbyngo-Labs/novela
+After=network.target postgresql.service sorabbyngo-nodeid.service
+Requires=postgresql.service sorabbyngo-nodeid.service
+
+[Service]
+Type=notify
+User=novela
+Group=novela
+WorkingDirectory=/opt/sorabbyngo/novela
+ExecStart=/usr/bin/python3 -m uvicorn novela.main:app \
+    --host 0.0.0.0 --port 8000 \
+    --workers 4 \
+    --log-config /opt/sorabbyngo/novela/logging.yaml
+ExecReload=/bin/kill -HUP $MAINPID
+Restart=on-failure
+RestartSec=10s
+StandardOutput=journal
+StandardError=journal
+SyslogIdentifier=novela
+EnvironmentFile=/etc/sorabbyngo/environment
+
+# FHIR data protection
+NoNewPrivileges=yes
+ProtectSystem=strict
+ProtectHome=yes
+ReadWritePaths=/var/log/sorabbyngo /var/lib/novela
+PrivateTmp=yes
+PrivateDevices=yes
+ProtectKernelTunables=yes
+SystemCallFilter=@system-service @network-io
+SystemCallErrorNumber=EPERM
+
+[Install]
+WantedBy=multi-user.target

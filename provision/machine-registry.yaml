@@ -1,0 +1,48 @@
+# ============================================================
+# Sorabbyngo Machine Registry
+# Track all provisioned machines across the ecosystem
+# ============================================================
+
+version: "0.1.0"
+updated: "2026-04-25"
+
+machines:
+
+  # Development machines
+  dev:
+    - id: "dev-001"
+      hostname: "jonah-kali"
+      surface: "base"
+      env: "dev"
+      arch: "x86_64"
+      status: "active"
+      location: "Kisii, Kenya"
+      provisioned: "2026-04-25"
+      notes: "Primary development machine"
+
+  # Lab machines (cyber playing field)
+  lab:
+    - id: "lab-001"
+      hostname: "malware-lab-01"
+      surface: "sentinel-os"
+      env: "lab"
+      arch: "x86_64"
+      status: "planned"
+      location: "Kisii, Kenya"
+      notes: "Malware analysis and byngo-* tool testing"
+
+  # Staging
+  staging: []
+
+  # Production
+  prod: []
+
+  # Sandbox
+  sandbox:
+    - id: "sandbox-001"
+      hostname: "sorabbyngo-sandbox"
+      surface: "sentinel-os"
+      env: "sandbox"
+      arch: "x86_64"
+      status: "planned"
+      notes: "Air-gapped malware sandbox"

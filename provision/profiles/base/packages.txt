@@ -1,0 +1,51 @@
+# Sorabbyngo Base Package Profile
+# Installed on ALL surfaces
+
+# Core system
+bash
+curl
+wget
+git
+python3
+python3-pip
+python3-venv
+openssl
+ca-certificates
+sudo
+coreutils
+util-linux
+procps
+psmisc
+lsof
+htop
+
+# Networking
+iproute2
+iputils-ping
+net-tools
+nftables
+iptables
+
+# Security
+apparmor
+apparmor-utils
+libpam-apparmor
+auditd
+aide
+
+# NATS
+nats-server
+
+# Rust toolchain (for building byngo-* tools)
+rustup
+
+# Sorabbyngo runtime deps
+libssl-dev
+libpcap-dev
+gcc
+make
+pkg-config
+
+# Python runtime deps
+python3-yaml
+python3-cryptography
