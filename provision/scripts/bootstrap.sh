@@ -210,7 +210,11 @@ phase_nodeid() {
     local nodeid
     nodeid=$(echo "${hw_hash}-${SURFACE}-$(date +%s)" | sha256sum | cut -c1-64)
 
-    run echo "$nodeid" \> "$nodeid_file"
+    if [[ "$DRY_RUN" == "true" ]]; then
+        echo "  [DRY-RUN] Would write NodeID to $nodeid_file"
+    else
+        echo "$nodeid" > "$nodeid_file"
+    fi
     log "NodeID sealed: ${nodeid:0:16}..."
 }
 
@@ -223,7 +227,7 @@ phase_systemd() {
     local surface_units="$units_dir/$SURFACE"
 
     # Install base units
-    for unit in "$units_dir"/base/*.service "$units_dir"/base/*.timer 2>/dev/null; do
+    for unit in "$units_dir"/base/*.service "$units_dir"/base/*.timer; do
         [[ -f "$unit" ]] || continue
         log "Installing unit: $(basename "$unit")"
         run cp "$unit" /etc/systemd/system/
@@ -231,7 +235,7 @@ phase_systemd() {
 
     # Install surface-specific units
     if [[ -d "$surface_units" ]]; then
-        for unit in "$surface_units"/*.service "$surface_units"/*.timer 2>/dev/null; do
+        for unit in "$surface_units"/*.service "$surface_units"/*.timer; do
             [[ -f "$unit" ]] || continue
             log "Installing unit: $(basename "$unit")"
             run cp "$unit" /etc/systemd/system/
@@ -258,8 +262,10 @@ SORABBYNGO_VERSION=$VERSION
 SORABBYNGO_NODE_ID=$(cat /var/lib/sorabbyngo/nodeid 2>/dev/null || echo "pending")
 ENVEOF
 
-    run cp /tmp/sorabbyngo-env /etc/sorabbyngo/environment
-    run echo "source /etc/sorabbyngo/environment" \>\> /etc/profile.d/sorabbyngo.sh
+    if [[ "$DRY_RUN" != "true" ]]; then cp /tmp/sorabbyngo-env /etc/sorabbyngo/environment; fi
+    if [[ "$DRY_RUN" != "true" ]]; then
+    echo "source /etc/sorabbyngo/environment" >> /etc/profile.d/sorabbyngo.sh
+    fi
     log "Environment config written to /etc/sorabbyngo/environment"
 }
 
