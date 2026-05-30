@@ -62,7 +62,7 @@ Key requirement: high availability, vLLM inference, NATS clustering
 
 ### Common Base — Specialized Configs
 All OS surfaces share:
-- The same kernel source tree (`sorabbyngo-Labs/sorabbyngo-os`)
+- The same kernel source tree (`sorabbyngo-os/sorabbyngo-os`)
 - The same Byngonet kernel modules
 - The same NodeID hardware identity driver
 - The same AI supervisor layer

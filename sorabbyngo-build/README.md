@@ -1,5 +1,5 @@
 <p align="center">
-  <img src="https://raw.githubusercontent.com/sorabbyngo-Labs/.github/main/assets/sorabbyngo-logo.jpg" width="480"/>
+  <img src="https://raw.githubusercontent.com/sorabbyngo-os/.github/main/assets/sorabbyngo-logo.jpg" width="480"/>
 </p>
 <p align="center">
   <strong>Sorabbyngo Build — Buildroot-based OS image pipeline</strong>

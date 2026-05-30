@@ -11,12 +11,12 @@ This is the definitive engineering map. Each section is a separate private repo 
 | prime/ | odolocharles/prime | Founder only |
 | dmz/ | odolocharles/sorabbyngo-dmz | Founder only |
 | os/kernel/ | odolocharles/linux-sorabbyngo | Founder only |
-| os/ | sorabbyngo-Labs/sorabbyngo-os | Core team |
-| byngonet/ | sorabbyngo-Labs/byngonet | Core team |
-| os/byngox/ | sorabbyngo-Labs/byngox | Core team |
-| os/chameha/ | sorabbyngo-Labs/chameha | Core team |
-| cml/ | sorabbyngo-Labs/cml | Core team |
-| novela/ | sorabbyngo-Labs/novela | Core team |
+| os/ | sorabbyngo-os/sorabbyngo-os | Core team |
+| byngonet/ | sorabbyngo-os/byngonet | Core team |
+| os/byngox/ | sorabbyngo-os/byngox | Core team |
+| os/chameha/ | sorabbyngo-os/chameha | Core team |
+| cml/ | sorabbyngo-os/cml | Core team |
+| novela/ | novela-health/novela | Core team |
 
 ## Full Architecture
 
@@ -28,7 +28,7 @@ NEVER put in org repos: PRIME training code, DMZ service, Vault root keys, train
 
 Founder only (odolocharles/): prime, sorabbyngo-dmz, linux-sorabbyngo
 
-Core team (sorabbyngo-Labs/): all other repos
+Core team (sorabbyngo-os/): all other repos
 
 ## Key ADRs
 - ADR-001: Graphical Chameha boot, TTY fallback F2-F6
